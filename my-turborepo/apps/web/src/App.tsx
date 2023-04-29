@@ -1,27 +1,35 @@
-import React from "react";
-import { Link } from "ui";
-import "./App.css";
+import { Admin, Resource } from 'react-admin';
+import jsonServerProvider from 'ra-data-json-server';
+import PostIcon from '@mui/icons-material/Book';
+import UserIcon from '@mui/icons-material/Group';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1 className="header">
-          Web
-          <div className="Turborepo">Turborepo Example</div>
-        </h1>
-        <div>
-          <Link className="App-link" href="https://turbo.build/repo">
-            Turborepo Docs
-          </Link>
-          <span> | </span>
-          <Link className="App-link" href="https://reactjs.org">
-            React Docs
-          </Link>
-        </div>
-      </header>
-    </div>
-  );
-}
+import { UserList } from 'user-team';
+import { authProvider } from './authProvider';
+import { Dashboard } from './Dashboard';
+import { PostList, PostEdit, PostCreate } from './posts';
+
+const dataProvider = jsonServerProvider('https://jsonplaceholder.typicode.com');
+
+const App = () => (
+    <Admin
+        authProvider={authProvider}
+        dataProvider={dataProvider}
+        dashboard={Dashboard}
+    >
+        <Resource
+            name="posts"
+            list={PostList}
+            edit={PostEdit}
+            create={PostCreate}
+            icon={PostIcon}
+        />
+        <Resource
+            name="users"
+            list={UserList}
+            icon={UserIcon}
+            recordRepresentation="name"
+        />
+    </Admin>
+);
 
 export default App;
