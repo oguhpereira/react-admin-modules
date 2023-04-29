@@ -2,20 +2,16 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev",
+    "clean": "turbo run clean",
+    "dev": "turbo run dev --no-cache --continue",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "test": "turbo run test"
   },
   "devDependencies": {
-    "eslint": "^7.32.0",
-    "eslint-config-custom": "*",
+    "eslint": "^8.4.1",
     "prettier": "^2.5.1",
     "turbo": "latest"
   },
-  "name": "my-turborepo",
-  "packageManager": "yarn@1.22.19",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ]
+  "packageManager": "pnpm@7.15.0"
 }
